@@ -6,20 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Category extends Model
+class Product extends Model
 {
     use HasFactory;
     use Sluggable;
 
-    protected $fillable = [
-        'title',
-        'slug',
-
-    ];
-
-    public function products()
+    public function tags()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     /**
