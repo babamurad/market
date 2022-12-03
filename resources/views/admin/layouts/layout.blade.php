@@ -56,6 +56,14 @@
                         <a href="{{ route('categories.index') }}" class="collapsible-header waves-effect">
                             <i class="fas fa-briefcase"></i>Categories</a>
                     </li>
+                    <li>
+                        <a href="{{ route('products.index') }}" class="collapsible-header waves-effect">
+                            <i class="fas fa-gifts"></i>Products</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('tags.index') }}" class="collapsible-header waves-effect">
+                            <i class="fas fa-tags"></i>Tags</a>
+                    </li>
                     <!-- Simple link -->
                     <li>
                         <a href="#" class="collapsible-header waves-effect"><i
