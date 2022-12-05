@@ -113,4 +113,11 @@ class CategoryController extends Controller
         }
         return redirect()->route('categories.index')->with($msg);
     }
+
+    public function sort($fieldName)
+    {
+        $categories = Category::orderby($fieldName, 'ASC')->get();
+
+        return view('admin.categories.index', compact('categories'));
+    }
 }

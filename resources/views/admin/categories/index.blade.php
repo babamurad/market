@@ -34,9 +34,15 @@
         <div class="card card-cascade narrower z-depth-0">
             <div
                 class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-                <div class="col-sm-9">
-                    <h4>Categories</h4>
-                </div>
+                    <div>
+                    <a href="{{ route('categories.index') }}" class="white-text mx-3"><i class="fas fa-list mr-3"></i>Categories</a>
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 waves-effect waves-light"><i
+                                class="fas fa-sync-alt"></i></button>
+                    </div>
+
             </div>
 
             <div class="px-4">
@@ -48,16 +54,19 @@
                         <table class="table table-hover mb-2">
 
                             <!-- Table head -->
+{{--                            --}}
                             <thead>
                             <tr>
-                                <th class="th-lg"><a>Id <i class="fas fa-sort ml-1"></i></a></th>
-                                <th class="th-lg"><a>Category Title <i class="fas fa-sort ml-1"></i></a></th>
+                                <th class="th-lg"><a class="sort" href="{{ route('admin.categories.sort', 'id') }}">Id <i class="sortic fas fa-sort-up ml-1"></i></a></th>
+                                <th class="th-lg"><a href="{{ route('admin.categories.sort', 'title') }}">Category Title <i class="fas fa-sort ml-1"></i></a></th>
                                 <th class="th-lg"><a>Category Slug <i class="fas fa-sort ml-1"></i></a></th>
                                 <th class="th-lg"><a>Description<i class="fas fa-sort ml-1"></i></a></th>
-                                <th class="th-lg"><a>Action<i class="fas fa-sort ml-1"></i></a></th>
+                                <th class="th-lg">Action</th>
                             </tr>
                             </thead>
                             <!-- Table head -->
+{{--                            <i class="fas fa-sort-up"></i>--}}
+{{--                            <i class="fas fa-sort-down"></i>--}}
 
                             <!-- Table body -->
                             <tbody>

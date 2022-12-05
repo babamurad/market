@@ -196,7 +196,6 @@
             © {{ date('Y') }} Copyright: <a href="{{ url('/') }}" target="_blank"> Market.com </a>
         </div>
     </div>
-
 </footer>
 <!-- Footer -->
 
@@ -209,6 +208,18 @@
 <script type="text/javascript" src="{{ asset('assets/admin/js/bootstrap.js') }} "></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="{{ asset('assets/admin/js/mdb.min.js') }} "></script>
+
+<!--onclick="var state = this.className.indexOf('A') > -1; $(this).toggleClass('A', !state).toggleClass('B', state);" -->
+{{--fa-sort-down--}}
+<script>
+    $('.sortic').click(function () {
+        $('.sortic').toggleClass('fa-sort-up');
+        $('.sortic').toggleClass('fa-sort-down');
+    })
+</script>
+
+@stack('ckeditor')
+@stack('chart')
 
 <!-- Initializations -->
 <script>
@@ -249,49 +260,7 @@
         });
     });
 
-    // Main chart
-    var ctxL = document.getElementById("lineChart").getContext('2d');
-    var myLineChart = new Chart(ctxL, {
-        type: 'line',
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [{
-                label: "My First dataset",
-                fillColor: "#fff",
-                backgroundColor: 'rgba(255, 255, 255, .3)',
-                borderColor: 'rgba(255, 255, 255)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }]
-        },
-        options: {
-            legend: {
-                labels: {
-                    fontColor: "#fff",
-                }
-            },
-            scales: {
-                xAxes: [{
-                    gridLines: {
-                        display: true,
-                        color: "rgba(255,255,255,.25)"
-                    },
-                    ticks: {
-                        fontColor: "#fff",
-                    },
-                }],
-                yAxes: [{
-                    display: true,
-                    gridLines: {
-                        display: true,
-                        color: "rgba(255,255,255,.25)"
-                    },
-                    ticks: {
-                        fontColor: "#fff",
-                    },
-                }],
-            }
-        }
-    });
+
 
     $(function () {
         $('#dark-mode').on('click', function (e) {

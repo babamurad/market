@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function (){
     Route::get('/', 'MainController@index')->name('admin.index');
     Route::resource('/categories', 'CategoryController');
+    Route::get('/category/sort/{fname}', 'CategoryController@sort')->name('admin.categories.sort');
+
     Route::resource('/tags', 'TagController');
     Route::resource('/products', 'ProductController');
     Route::post('/products/search', 'ProductController@search')->name('admin.products.search');

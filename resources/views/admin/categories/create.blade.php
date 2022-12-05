@@ -14,9 +14,9 @@
                         <label for="form8" data-error="wrong" data-success="right" class="">Title category</label>
                     </div>
                     <div class="md-form">
-                        <i class="fas fa-pencil-alt prefix"></i>
-                        <textarea type="text" id="form11" class="md-textarea form-control" rows="3" name="desc"></textarea>
-                        <label for="form11" class="">Description</label>
+                        {{-- <i class="fas fa-pencil-alt prefix"></i> --}}
+                        <textarea type="text" id="summary-ckeditor" class="md-textarea form-control" rows="3" name="desc"></textarea>
+                        {{-- <label for="form11" class="">Description</label> --}}
                     </div>
                         <button type="submit" class="btn btn-dark-green">Save Category</button>
                 </form>
@@ -25,5 +25,9 @@
 
 
     </section>
+@push('ckeditor')
+<!-- CKEditor -->
+<script type="text/javascript" src="{{ asset('assets/admin/ckeditor/ckeditor.js') }} "></script>    
+@endpush    
 
 @endsection
