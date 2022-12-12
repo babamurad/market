@@ -12,21 +12,21 @@ class CatalogController extends Controller
     public function index()
     {
         $root = Category::where('parent_id', 0)->get();
-        return view('catalog.index', compact('root'));
+        return view('front.catalog.index', compact('root'));
     }
 
     public function category($slug)
     {
         $category = Category::where('slug', $slug)->get();
         $products = Product::where('category_id', $category->id)->get();
-        return view('catalog.category', compact('category', 'products'));
+        return view('front.catalog.category', compact('category', 'products'));
     }
 
     public function brand($slug)
     {
         $brand = Brand::where('slug', $slug)->get();
         $products = Product::where('brand', $brand->id)->get();
-        return view('catalog.brand', compact('brand', 'products'));
+        return view('front.catalog.brand', compact('brand', 'products'));
     }
 
     public function product($slug)
@@ -42,6 +42,6 @@ class CatalogController extends Controller
             ->join('brands', 'products.brand_id', '=', 'brands.id')
             ->where('products.slug', $slug)
             ->firstOrFail();
-        return view('catalog.product', compact('product'));
+        return view('front.catalog.product', compact('product'));
     }
 }
