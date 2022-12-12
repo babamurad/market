@@ -14,11 +14,12 @@
                 </div>
                 <!-- Grid column -->
                 <div class="col-xl-4 col-md-6">
-                    <form class="form-inline mt-2 ml-2">
+                    <form class="form-inline mt-2 ml-2" name="form" action="{{ route('admin.categories.search') }}" method="post">
+                        @csrf
                         <div class="form-group md-form mt-2">
-                            <input class="form-control w-100" type="text" placeholder="Search">
+                            <input name="stext" class="form-control w-100" type="text" placeholder="Search">
                         </div>
-                        <button class="btn btn-sm btn-primary ml-2 mr-0 mb-md-0 mb-4 px-2 waves-effect waves-light">
+                        <button type="submit" class="btn btn-sm btn-primary ml-2 mr-0 mb-md-0 mb-4 px-2 waves-effect waves-light">
                             <i class="fas fa-search"></i></button>
                     </form>
 
@@ -30,6 +31,12 @@
 
         </div>
         <!-- Top Table UI -->
+<?php //var_dump($parent); ?>
+        <ul>
+{{--            @foreach($parent as $p)--}}
+{{--            <li><?php echo 'suka blyat'?></li>--}}
+{{--            @endforeach--}}
+        </ul>
 
         <div class="card card-cascade narrower z-depth-0">
             <div
@@ -54,13 +61,13 @@
                         <table class="table table-hover mb-2">
 
                             <!-- Table head -->
-{{--                            --}}
+{{--          {{ route('admin.categories.sort', 'id') }}                  --}}
                             <thead>
                             <tr>
-                                <th class="th-lg"><a class="sort" href="{{ route('admin.categories.sort', 'id') }}">Id <i class="sortic fas fa-sort-up ml-1"></i></a></th>
+                                <th class="th-lg"><a href="{{ route('admin.categories.sort', 'id') }}" class="sort" href="#">Id <i class="sortic fas fa-sort ml-1"></i></a></th>
                                 <th class="th-lg"><a href="{{ route('admin.categories.sort', 'title') }}">Category Title <i class="fas fa-sort ml-1"></i></a></th>
-                                <th class="th-lg"><a>Category Slug <i class="fas fa-sort ml-1"></i></a></th>
-                                <th class="th-lg"><a>Description<i class="fas fa-sort ml-1"></i></a></th>
+                                <th class="th-lg"><a>Category Slug </a></th>
+                                <th class="th-lg"><a>Parent </a></th>
                                 <th class="th-lg">Action</th>
                             </tr>
                             </thead>
@@ -71,11 +78,12 @@
                             <!-- Table body -->
                             <tbody>
                             @foreach($categories as $category)
+{{--                                optional($category->parentCategory)->title--}}
                                 <tr>
                                     <td>{{ $category->id }}</td>
                                     <td>{{ $category->title }}</td>
                                     <td>{{ $category->slug }}</td>
-                                    <td>{{ $category->desc }}</td>
+                                    <td>{{ $category->parent->title }}</td>
                                     <td>
                                         <a href="{{ route('categories.edit', $category->id) }}"
                                            class="btn btn-info btn-sm float-left mr-1" style="margin-top: 0.3rem;">
@@ -106,7 +114,7 @@
                     <!-- Bottom Table UI -->
                     <div class="d-flex justify-content-between">
 
-                        {{--                    {{ $categories->links("pagination::bootstrap-4") }}--}}
+                                            {{ $categories->links("pagination::bootstrap-4") }}
 
                     </div>
                     <!-- Bottom Table UI -->

@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap</title>
+    <title>E - commerce Turkmenabat</title>
+    <link rel="shortcut icon" href="../../../../public/assets/favicon.ico">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -218,6 +219,18 @@
     })
 </script>
 
+<script>
+    $(document).ready(function () {
+        var sortType;
+        var x;
+        $(document).on('click', '.sortic', function (e) {
+            e.preventDefault();
+            if ($ ('.sortic') .hasClass ("fa-sort-up")) {sortType = 'ASC';} else {sortType = 'DESC';}
+            // console.log(sortType);
+        })
+    })
+</script>
+
 @stack('ckeditor')
 @stack('chart')
 
@@ -237,9 +250,9 @@
     $('.datepicker').pickadate();
 
     // // Material Select Initialization
-    // $(document).ready(function () {
-    //     $('.mdb-select').material_select();
-    // });
+    $(document).ready(function () {
+        $('.mdb-select').material_select();
+    });
 
     // Tooltips Initialization
     $(function () {
@@ -283,6 +296,9 @@
     });
 
 </script>
+
+
+
 
 </body>
 

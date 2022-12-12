@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderby('id', 'DESC')->paginate(4);
+
+        $categories = Category::orderby('id', 'DESC')->paginate(6);
+
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -26,7 +30,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        $categories = Category::all();
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
@@ -44,6 +49,7 @@ class CategoryController extends Controller
 
         $category = new Category([
             'title' => $request->title,
+            'parent_id' => $request->parent_id,
             'desc' => $request->desc,
         ]);
         $category->save();
@@ -71,7 +77,10 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.categories.edit', compact('category'));
+
+        $categories = Category::where('id', '<>',  $id )->get();
+
+        return view('admin.categories.edit', compact('category', 'categories'));
     }
 
     /**
@@ -87,11 +96,13 @@ class CategoryController extends Controller
             'title' => 'required',
         ]);
         $category = Category::findOrFail($id);
-
-        $category->title = $request->title;
-        $category->desc = $request->desc;
-
-        $category->update();
+//        dd($request->parent_id);
+        $category->update([
+            'title' => $request->title,
+            'desc' => $request['desc'],
+            'parent_id' => $request->parent_id,
+        ]);
+//        dd($category);
         $request->session()->flash('success', 'Категория изменена!');
         return redirect()->route('categories.index');
     }
@@ -116,7 +127,24 @@ class CategoryController extends Controller
 
     public function sort($fieldName)
     {
-        $categories = Category::orderby($fieldName, 'ASC')->get();
+        $categories = Category::orderby($fieldName, 'DESC')->paginate(5);
+
+        return view('admin.categories.index', compact('categories'));
+    }
+
+    /**
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function search(Request $request)
+    {
+        $stext = $request->stext;
+        if (isset($stext)){
+            $categories = Category::where('title', 'LIKE', '%' . $stext . '%')->paginate(4);
+        } else {
+            $categories = Category::orderby('id', 'DESC')->paginate(4);
+        }
 
         return view('admin.categories.index', compact('categories'));
     }

@@ -14,13 +14,25 @@ class Category extends Model
     protected $fillable = [
         'title',
         'slug',
-
+        'parent_id',
+        'desc',
     ];
+
+    public function parentCategory()
+    {
+        return $this->belongsTo(Category::class, 'parent_id', 'id');
+    }
 
     public function products()
     {
         return $this->hasMany(Product::class);
     }
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 
     /**
      * Return the sluggable configuration array for this model.
