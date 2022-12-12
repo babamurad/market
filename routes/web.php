@@ -22,6 +22,5 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/catalog/product/{slug}', 'CatalogController@product')->name('catalog.product');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');

@@ -3510,3 +3510,12 @@ ul.sub__menu.sub__dept--menu li:hover ul.sub__menu.level2 {
 
 
 
+.page-item.active .page-link {
+    background-color: #ca350c !important;
+    border-color: #ca350c !important;
+    color: white !important;
+}
+
+.page-link {
+    color: #000 !important;
+}

@@ -18,6 +18,17 @@ class Category extends Model
         'desc',
     ];
 
+    /**
+     * Возвращает список товаров выбранной категории
+     */
+    public function getProducts()
+    {
+        return Product::where('category_id', $this->id)->paginate(12);
+    }
+
+    /**
+     * Связь «один ко многим» таблицы `categories` с таблицей `products`
+     */
     public function parentCategory()
     {
         return $this->belongsTo(Category::class, 'parent_id', 'id');
